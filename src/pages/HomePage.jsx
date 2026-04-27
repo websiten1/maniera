@@ -18,19 +18,41 @@ const iconMap = {
 // ─── Hero ────────────────────────────────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-cream">
-      {/* Subtle dot pattern */}
-      <div
-        className="absolute inset-0 opacity-40 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #A8D5BA30 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
-      {/* Decorative blobs */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-sage/15 pointer-events-none" />
-      <div className="absolute top-1/3 -left-20 w-64 h-64 rounded-full bg-sky/10 pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-48 h-48 rounded-full bg-sage-light/30 pointer-events-none" />
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: '#FDF9F4' }}
+    >
+      {/* Colorful kindergarten bubbles */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        {/* Sage green */}
+        <circle cx="8%" cy="18%" r="52" fill="#A8D5BA" fillOpacity="0.45" />
+        <circle cx="88%" cy="72%" r="38" fill="#A8D5BA" fillOpacity="0.40" />
+        <circle cx="55%" cy="92%" r="28" fill="#A8D5BA" fillOpacity="0.35" />
+        {/* Light blue */}
+        <circle cx="78%" cy="12%" r="64" fill="#7FC4D9" fillOpacity="0.42" />
+        <circle cx="22%" cy="82%" r="44" fill="#7FC4D9" fillOpacity="0.38" />
+        <circle cx="65%" cy="55%" r="22" fill="#7FC4D9" fillOpacity="0.30" />
+        {/* Soft yellow */}
+        <circle cx="92%" cy="38%" r="46" fill="#F4D9A6" fillOpacity="0.50" />
+        <circle cx="35%" cy="6%" r="32" fill="#F4D9A6" fillOpacity="0.45" />
+        <circle cx="12%" cy="58%" r="20" fill="#F4D9A6" fillOpacity="0.40" />
+        {/* Soft pink */}
+        <circle cx="48%" cy="15%" r="36" fill="#F5C8C1" fillOpacity="0.45" />
+        <circle cx="5%" cy="42%" r="58" fill="#F5C8C1" fillOpacity="0.35" />
+        <circle cx="82%" cy="90%" r="26" fill="#F5C8C1" fillOpacity="0.40" />
+        {/* Soft lavender */}
+        <circle cx="70%" cy="28%" r="42" fill="#E8D4F1" fillOpacity="0.48" />
+        <circle cx="18%" cy="95%" r="34" fill="#E8D4F1" fillOpacity="0.42" />
+        <circle cx="95%" cy="60%" r="24" fill="#E8D4F1" fillOpacity="0.35" />
+        {/* Peach */}
+        <circle cx="38%" cy="78%" r="50" fill="#F4C4B0" fillOpacity="0.42" />
+        <circle cx="60%" cy="4%" r="30" fill="#F4C4B0" fillOpacity="0.45" />
+        <circle cx="2%" cy="72%" r="18" fill="#F4C4B0" fillOpacity="0.38" />
+      </svg>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
