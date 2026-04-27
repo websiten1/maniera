@@ -49,9 +49,9 @@ function HeroSection() {
         <circle cx="18%" cy="95%" r="34" fill="#E8D4F1" fillOpacity="0.42" />
         <circle cx="95%" cy="60%" r="24" fill="#E8D4F1" fillOpacity="0.35" />
         {/* Peach */}
-        <circle cx="38%" cy="78%" r="50" fill="#F4C4B0" fillOpacity="0.42" />
-        <circle cx="60%" cy="4%" r="30" fill="#F4C4B0" fillOpacity="0.45" />
-        <circle cx="2%" cy="72%" r="18" fill="#F4C4B0" fillOpacity="0.38" />
+        <circle cx="38%" cy="78%" r="50" fill="#E85D5D" fillOpacity="0.42" />
+        <circle cx="60%" cy="4%" r="30" fill="#E85D5D" fillOpacity="0.45" />
+        <circle cx="2%" cy="72%" r="18" fill="#E85D5D" fillOpacity="0.38" />
       </svg>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
