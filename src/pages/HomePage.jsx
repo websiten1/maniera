@@ -56,7 +56,7 @@ function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="font-poppins font-bold text-gray-800 leading-tight mb-3"
-              style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4rem)' }}
+              style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', lineHeight: '1.25' }}
             >
               {siteName}
             </motion.h1>
