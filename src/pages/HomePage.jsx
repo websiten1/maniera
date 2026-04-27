@@ -50,7 +50,7 @@ function HeroSection() {
               </span>
             </motion.div>
 
-            {/* BIG headline */}
+            {/* BIG headline: school name */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -58,18 +58,18 @@ function HeroSection() {
               className="font-poppins font-bold text-gray-800 leading-tight mb-3"
               style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4rem)' }}
             >
-              Educație pentru{' '}
-              <span className="gradient-text">Viață</span>
+              {siteName}
             </motion.h1>
 
-            {/* Sub-headline: school name */}
+            {/* Sub-headline: tagline */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.32 }}
               className="font-poppins font-semibold text-sage-dark text-lg mb-4 leading-snug"
             >
-              {siteName}
+              Educație pentru{' '}
+              <span className="gradient-text">Viață</span>
             </motion.p>
 
             {/* Description */}
