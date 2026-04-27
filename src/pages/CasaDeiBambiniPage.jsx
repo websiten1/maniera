@@ -18,6 +18,23 @@ const areaIconMap = {
   Hand, Eye, MessageSquare, Calculator, Globe,
 }
 
+function GradientVisual({ gradient, icon: Icon, label, sublabel, height = 360 }) {
+  return (
+    <div
+      className="rounded-3xl flex items-center justify-center shadow-lg w-full"
+      style={{ height, background: gradient }}
+    >
+      <div className="text-center px-6">
+        <div className="w-16 h-16 rounded-2xl bg-white/30 backdrop-blur flex items-center justify-center mx-auto mb-3">
+          <Icon className="w-8 h-8 text-white" />
+        </div>
+        <p className="font-poppins font-semibold text-white text-lg">{label}</p>
+        {sublabel && <p className="text-white/70 text-sm mt-1">{sublabel}</p>}
+      </div>
+    </div>
+  )
+}
+
 export default function CasaDeiBambiniPage() {
   return (
     <motion.div
@@ -27,19 +44,22 @@ export default function CasaDeiBambiniPage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-cream relative overflow-hidden">
+      <section
+        className="pt-32 pb-20 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #7FC4D9 0%, #A8D5BA 60%, #F5F3F0 100%)' }}
+      >
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: 'radial-gradient(circle, #7FC4D920 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #5A8F7B20 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-sky/10" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/10" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeInUp>
-              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sky bg-sky-light/50 px-3 py-1 rounded-full mb-4">
+              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-white/60 backdrop-blur px-3 py-1 rounded-full mb-4">
                 2 ani 6 luni – 6 ani
               </span>
               <h1
@@ -47,11 +67,9 @@ export default function CasaDeiBambiniPage() {
                 style={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)' }}
               >
                 Casa dei{' '}
-                <span className="bg-gradient-to-r from-sky to-sage-dark bg-clip-text text-transparent">
-                  Bambini
-                </span>
+                <span className="text-sage-dark">Bambini</span>
               </h1>
-              <p className="text-lg text-warm-gray leading-relaxed mb-6">
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 Casa copiilor — un univers al descoperirii. Inima experienței Montessori,
                 unde copiii de 2.5 până la 6 ani explorează, creează și se dezvoltă
                 în propriul lor ritm.
@@ -62,7 +80,7 @@ export default function CasaDeiBambiniPage() {
                 spațiu și libertate să descopere cine este și ce poate face.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button to="/contact" size="lg" className="bg-sky text-white hover:bg-sky/90 rounded-lg px-8 py-4 font-semibold text-lg">
+                <Button to="/contact" variant="primary" size="lg">
                   Înscrie-te acum
                   <ArrowRight className="w-5 h-5" />
                 </Button>
@@ -74,21 +92,20 @@ export default function CasaDeiBambiniPage() {
 
             <FadeInUp delay={0.2}>
               <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <img
-                    src="https://picsum.photos/seed/casabambini-hero/640/520"
-                    alt="Casa dei Bambini"
-                    className="w-full object-cover"
-                    style={{ height: '420px' }}
-                  />
-                </div>
+                <GradientVisual
+                  gradient="linear-gradient(135deg, #5A8F7B 0%, #7FC4D9 60%, #B3DDE9 100%)"
+                  icon={Star}
+                  label="Casa dei Bambini"
+                  sublabel="Un univers al descoperirii"
+                  height={420}
+                />
                 <motion.div
                   animate={{ y: [-3, 3, -3] }}
                   transition={{ repeat: Infinity, duration: 3.5 }}
                   className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4"
                 >
                   <div className="font-poppins font-semibold text-gray-800 text-sm">Program after-school</div>
-                  <div className="text-sky text-xs font-medium">08:00 – 18:00</div>
+                  <div className="text-sage-dark text-xs font-medium">08:00 – 18:00</div>
                 </motion.div>
                 <motion.div
                   animate={{ y: [3, -3, 3] }}
@@ -152,8 +169,6 @@ export default function CasaDeiBambiniPage() {
                 </FadeInUp>
               )
             })}
-
-            {/* 5th area spans 2 cols on lg */}
           </div>
         </div>
       </section>
@@ -202,30 +217,28 @@ export default function CasaDeiBambiniPage() {
 
             <FadeInUp delay={0.2}>
               <div className="space-y-4">
-                <div className="rounded-2xl overflow-hidden shadow-lg">
-                  <img
-                    src="https://picsum.photos/seed/mediu-pregătit/640/360"
-                    alt="Mediul pregătit Montessori"
-                    className="w-full object-cover"
-                    style={{ height: '260px' }}
-                  />
-                </div>
+                <GradientVisual
+                  gradient="linear-gradient(135deg, #7FC4D9 0%, #A8D5BA 50%, #5A8F7B 100%)"
+                  icon={BookOpen}
+                  label="Mediu pregătit Montessori"
+                  height={260}
+                />
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl overflow-hidden shadow-sm">
-                    <img
-                      src="https://picsum.photos/seed/materiale1/400/300"
-                      alt="Materiale Montessori"
-                      className="w-full object-cover"
-                      style={{ height: '150px' }}
-                    />
+                  <div
+                    className="rounded-2xl flex items-center justify-center"
+                    style={{ height: 150, background: 'linear-gradient(135deg, #C8E6D5 0%, #A8D5BA 100%)' }}
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-white/40 flex items-center justify-center">
+                      <Hand className="w-5 h-5 text-sage-dark" />
+                    </div>
                   </div>
-                  <div className="rounded-2xl overflow-hidden shadow-sm">
-                    <img
-                      src="https://picsum.photos/seed/materiale2/400/300"
-                      alt="Activitate Casa"
-                      className="w-full object-cover"
-                      style={{ height: '150px' }}
-                    />
+                  <div
+                    className="rounded-2xl flex items-center justify-center"
+                    style={{ height: 150, background: 'linear-gradient(135deg, #B3DDE9 0%, #7FC4D9 100%)' }}
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-white/40 flex items-center justify-center">
+                      <Calculator className="w-5 h-5 text-sage-dark" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -253,11 +266,11 @@ export default function CasaDeiBambiniPage() {
                   <FadeInUp key={idx} delay={idx * 0.04}>
                     <div className="flex gap-4 pl-14 relative">
                       <div className="absolute left-0 w-12 h-12 rounded-full bg-white border-2 border-sky/20 flex items-center justify-center shadow-sm">
-                        <Icon className="w-5 h-5 text-sky" />
+                        <Icon className="w-5 h-5 text-sky" style={{ color: '#5A8F7B' }} />
                       </div>
                       <div className={`flex-1 rounded-2xl p-4 mb-2 ${idx % 2 === 0 ? 'bg-cream' : 'bg-white border border-gray-100'}`}>
                         <div className="flex items-center gap-3 mb-1">
-                          <span className="text-xs font-bold text-sky bg-sky-light/60 px-2 py-0.5 rounded-full">
+                          <span className="text-xs font-bold text-sage-dark bg-sky-light/60 px-2 py-0.5 rounded-full">
                             {item.time}
                           </span>
                           <span className="font-poppins font-semibold text-gray-800 text-sm">
@@ -285,7 +298,7 @@ export default function CasaDeiBambiniPage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <FadeInUp>
             <div className="bg-white rounded-3xl p-10 shadow-sm">
-              <div className="text-5xl mb-6">"</div>
+              <div className="text-5xl text-sage/40 mb-4 font-poppins">"</div>
               <p className="text-xl text-gray-700 leading-relaxed mb-6 italic">
                 Radu a trecut prin Toddler și acum este în Casa dei Bambini. Progresul
                 în matematică și limbaj este uimitor, dar cel mai important — este fericit

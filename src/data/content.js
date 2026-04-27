@@ -1,3 +1,12 @@
+export const siteName = 'Grădinița și Școala Primară „Maniera Montessori"'
+export const siteNameShort = 'Maniera Montessori'
+export const sitePhone = '0744 571 837'
+export const sitePhoneRaw = '+40744571837'
+export const siteFacebook = 'https://www.facebook.com/ManieraEsentaMontessori/'
+export const siteAddress = 'Strada Aeroportului 1, Iași 700384'
+export const siteEmail = 'contact@maniera-montessori.ro'
+export const siteSchedule = 'Luni – Vineri, 08:00 – 18:00'
+
 export const principles = [
   {
     id: 1,
@@ -105,7 +114,7 @@ export const testimonials = [
     name: 'Maria Popescu',
     role: 'Mama lui Andrei, 4 ani',
     avatar: 'MP',
-    text: 'De când frecventează grădinița Montessori, Andrei s-a transformat. Este mult mai independent, curios și știe să se concentreze pe ceea ce face. Educatoarele sunt extraordinare — îl cunosc atât de bine și îl iubesc sincer.',
+    text: 'De când frecventează Maniera Montessori, Andrei s-a transformat. Este mult mai independent, curios și știe să se concentreze pe ceea ce face. Educatoarele sunt extraordinare — îl cunosc atât de bine și îl iubesc sincer.',
     color: 'bg-sage-light',
   },
   {
@@ -121,7 +130,7 @@ export const testimonials = [
     name: 'Ioana Moldovan',
     role: 'Mama gemenilor Luca și Sofia, 3 ani',
     avatar: 'IM',
-    text: 'Grădinița are un mediu atât de cald și primitor. Gemenii mei abia așteaptă dimineața să meargă "la grădi". Programul zilnic este echilibrat, educatoarele sunt răbdătoare și profesioniste. Nu am putea alege mai bine!',
+    text: 'Grădinița are un mediu atât de cald și primitor. Gemenii mei abia așteaptă dimineața să meargă la Maniera Montessori. Programul zilnic este echilibrat, educatoarele sunt răbdătoare și profesioniste. Nu am putea alege mai bine!',
     color: 'bg-cream-dark',
   },
   {
@@ -140,7 +149,6 @@ export const groups = {
     age: '1 an 3 luni — 2 ani 6 luni',
     tagline: 'Primii pași spre independență',
     description: 'Programa Toddler este concepută special pentru cel mai sensibil stadiu al vieții. Într-un mediu sigur, cald și stimulant, cei mici descoperă lumea prin simțuri, mișcare și relații autentice.',
-    image: 'https://picsum.photos/seed/toddlergroup/800/600',
     color: 'sage',
     features: [
       'Mediu adaptat dimensiunilor copilului mic',
@@ -156,7 +164,6 @@ export const groups = {
     age: '2 ani 6 luni — 6 ani',
     tagline: 'Casa copiilor — un univers al descoperirii',
     description: 'Casa dei Bambini este inima experienței Montessori. Copiii lucrează individual sau în grupuri mici, explorând cele 5 arii curriculare Montessori în ritmul lor propriu, cu materiale special concepute.',
-    image: 'https://picsum.photos/seed/casabambini/800/600',
     color: 'sky',
     features: [
       'Cele 5 arii curriculare Montessori',
@@ -211,7 +218,7 @@ export const curriculumAreas = [
     icon: 'Eye',
     color: 'bg-sky-light',
     accent: 'text-blue-700',
-    desc: 'Materialele senzoriale rafinează cele cinci simțuri și pregătesc mintea pentru concepte matematice și lingvistice. Copilul sortează, clasifică, compară și ordoneazădin concret spre abstract.',
+    desc: 'Materialele senzoriale rafinează cele cinci simțuri și pregătesc mintea pentru concepte matematice și lingvistice. Copilul sortează, clasifică, compară și ordonează din concret spre abstract.',
     activities: ['Turnul roz', 'Scările maro', 'Tabletele de culori', 'Tabletele termice', 'Baghete ale sonorelor'],
   },
   {
@@ -219,7 +226,7 @@ export const curriculumAreas = [
     icon: 'MessageSquare',
     color: 'bg-amber-100',
     accent: 'text-amber-700',
-    desc: 'Materialele de limbaj sprijină scrierea înaintea cititului, prin explorarea literelor de mers (fontă). Vocabularul bogat și exprimarea clară sunt cultivate zilnic prin conversație și povești.',
+    desc: 'Materialele de limbaj sprijină scrierea înaintea cititului, prin explorarea literelor de mers. Vocabularul bogat și exprimarea clară sunt cultivate zilnic prin conversație și povești.',
     activities: ['Sandpaper letters', 'Alfabetul mobil', 'Clasificări de imagini', 'Cartele cu obiecte', 'Povești și cărți'],
   },
   {
@@ -247,7 +254,7 @@ export const teamMembers = [
     qualification: 'Diplomă AMI 3-6 ani, 12 ani experiență',
     avatar: 'EV',
     color: 'bg-sage-light',
-    bio: 'Elena a fondat grădinița cu misiunea de a aduce educația Montessori autentică în Iași. Formată la Amsterdam, ea este sufletul comunității noastre.',
+    bio: 'Elena a fondat Maniera Montessori cu misiunea de a aduce educația Montessori autentică în Iași. Formată la Amsterdam, ea este sufletul comunității noastre.',
   },
   {
     name: 'Andreea Mihai',
@@ -275,19 +282,19 @@ export const teamMembers = [
   },
 ]
 
-export const galleryImages = [
-  { id: 1, src: 'https://picsum.photos/seed/mont1/600/500', category: 'toddler', alt: 'Activitate Toddler' },
-  { id: 2, src: 'https://picsum.photos/seed/mont2/600/700', category: 'casa', alt: 'Lucru Montessori' },
-  { id: 3, src: 'https://picsum.photos/seed/mont3/600/450', category: 'events', alt: 'Eveniment grădiniță' },
-  { id: 4, src: 'https://picsum.photos/seed/mont4/600/600', category: 'toddler', alt: 'Activitate senzorială' },
-  { id: 5, src: 'https://picsum.photos/seed/mont5/600/500', category: 'casa', alt: 'Matematică Montessori' },
-  { id: 6, src: 'https://picsum.photos/seed/mont6/600/650', category: 'events', alt: 'Serbare' },
-  { id: 7, src: 'https://picsum.photos/seed/mont7/600/500', category: 'casa', alt: 'Lectură' },
-  { id: 8, src: 'https://picsum.photos/seed/mont8/600/550', category: 'toddler', alt: 'Viață practică' },
-  { id: 9, src: 'https://picsum.photos/seed/mont9/600/600', category: 'events', alt: 'Activitate în aer liber' },
-  { id: 10, src: 'https://picsum.photos/seed/mont10/600/500', category: 'casa', alt: 'Artă creativă' },
-  { id: 11, src: 'https://picsum.photos/seed/mont11/600/700', category: 'toddler', alt: 'Explorare naturală' },
-  { id: 12, src: 'https://picsum.photos/seed/mont12/600/500', category: 'events', alt: 'Comunitate' },
+export const galleryCards = [
+  { id: 1, category: 'toddler', label: 'Activitate senzorială', sub: 'Grupa Toddler', gradient: 'from-sage to-sage-light' },
+  { id: 2, category: 'casa', label: 'Lucru Montessori', sub: 'Casa dei Bambini', gradient: 'from-sky to-sky-light' },
+  { id: 3, category: 'events', label: 'Serbare de vară', sub: 'Eveniment comunitate', gradient: 'from-sage-dark to-sage' },
+  { id: 4, category: 'toddler', label: 'Viață practică', sub: 'Grupa Toddler', gradient: 'from-cream-dark to-sage-light' },
+  { id: 5, category: 'casa', label: 'Matematică Montessori', sub: 'Casa dei Bambini', gradient: 'from-sky-light to-sage-light' },
+  { id: 6, category: 'events', label: 'Activitate în aer liber', sub: 'Comunitate', gradient: 'from-sage to-sky' },
+  { id: 7, category: 'casa', label: 'Lectură și povești', sub: 'Casa dei Bambini', gradient: 'from-sage-dark to-sky' },
+  { id: 8, category: 'toddler', label: 'Explorare naturală', sub: 'Grupa Toddler', gradient: 'from-sage-light to-cream' },
+  { id: 9, category: 'events', label: 'Grădinărit', sub: 'Activitate sezonieră', gradient: 'from-sage-dark to-sage-light' },
+  { id: 10, category: 'casa', label: 'Artă creativă', sub: 'Casa dei Bambini', gradient: 'from-sky to-sage' },
+  { id: 11, category: 'toddler', label: 'Joacă liberă', sub: 'Grupa Toddler', gradient: 'from-sky-light to-cream-dark' },
+  { id: 12, category: 'events', label: 'Comunitate Maniera', sub: 'Eveniment anual', gradient: 'from-sage-dark to-sky' },
 ]
 
 export const stats = [

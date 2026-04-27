@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown, Leaf } from 'lucide-react'
+import { Menu, X, ChevronDown, Phone } from 'lucide-react'
+import logo from '../../assets/logo.png'
+import { sitePhone, sitePhoneRaw } from '../../data/content'
 
 const navLinks = [
   { label: 'Acasă', to: '/' },
@@ -81,20 +83,18 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18" style={{ height: '72px' }}>
+        <div className="flex items-center justify-between" style={{ height: '72px' }}>
+
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-sage flex items-center justify-center group-hover:bg-sage-dark transition-colors duration-200">
-              <Leaf className="w-5 h-5 text-white" />
-            </div>
-            <div className="leading-tight">
-              <div className="font-poppins font-bold text-gray-800 text-base leading-none">
-                Montessori
-              </div>
-              <div className="text-xs text-sage-dark font-medium tracking-wide">
-                Iași
-              </div>
-            </div>
+          <Link to="/" className="flex-shrink-0 group">
+            <motion.img
+              src={logo}
+              alt="Maniera Montessori"
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.2 }}
+              style={{ height: '52px', width: 'auto', objectFit: 'contain' }}
+              className="block"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -137,8 +137,15 @@ export default function Navbar() {
             )}
           </nav>
 
-          {/* Desktop CTA */}
+          {/* Desktop right: phone + CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            <a
+              href={`tel:${sitePhoneRaw}`}
+              className="flex items-center gap-1.5 text-sm font-medium text-sage-dark hover:text-sage transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              {sitePhone}
+            </a>
             <Link
               to="/contact"
               className="px-5 py-2.5 bg-sage text-white rounded-lg text-sm font-semibold hover:bg-sage-dark transition-all duration-200 hover:shadow-md"
@@ -147,24 +154,33 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-sage-light/40 transition-colors"
-            aria-label="Deschide meniu"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={mobileOpen ? 'close' : 'open'}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.15 }}
-              >
-                {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </motion.div>
-            </AnimatePresence>
-          </button>
+          {/* Mobile: phone icon + hamburger */}
+          <div className="lg:hidden flex items-center gap-2">
+            <a
+              href={`tel:${sitePhoneRaw}`}
+              className="p-2 rounded-lg text-sage-dark hover:bg-sage-light/40 transition-colors"
+              aria-label={`Sună la ${sitePhone}`}
+            >
+              <Phone className="w-5 h-5" />
+            </a>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-2 rounded-lg text-gray-700 hover:bg-sage-light/40 transition-colors"
+              aria-label="Deschide meniu"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={mobileOpen ? 'close' : 'open'}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -179,6 +195,15 @@ export default function Navbar() {
             className="lg:hidden bg-white border-t border-sage/10 overflow-hidden"
           >
             <nav className="px-4 py-4 space-y-1">
+              {/* Phone link prominently in mobile menu */}
+              <a
+                href={`tel:${sitePhoneRaw}`}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl bg-sage-light/40 text-sage-dark text-sm font-semibold"
+              >
+                <Phone className="w-4 h-4" />
+                {sitePhone}
+              </a>
+
               {navLinks.map((link) =>
                 link.children ? (
                   <div key={link.label}>

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ZoomIn } from 'lucide-react'
+import { Camera } from 'lucide-react'
 import SectionHeader from '../components/ui/SectionHeader'
-import { FadeInUp } from '../components/ui/AnimatedSection'
-import { galleryImages } from '../data/content'
+import { FadeInUp, AnimatedContainer, AnimatedItem } from '../components/ui/AnimatedSection'
+import { galleryCards, siteNameShort } from '../data/content'
 
 const categories = [
   { id: 'all', label: 'Toate' },
@@ -12,48 +12,35 @@ const categories = [
   { id: 'events', label: 'Evenimente' },
 ]
 
-function Lightbox({ image, onClose }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        transition={{ type: 'spring', damping: 25 }}
-        className="relative max-w-4xl w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
-        >
-          <X className="w-8 h-8" />
-        </button>
-        <img
-          src={image.src.replace('/600/', '/1200/')}
-          alt={image.alt}
-          className="w-full rounded-2xl shadow-2xl"
-        />
-        <p className="text-white/60 text-sm text-center mt-3">{image.alt}</p>
-      </motion.div>
-    </motion.div>
-  )
+const gradientMap = {
+  'from-sage to-sage-light': 'linear-gradient(135deg, #A8D5BA 0%, #C8E6D5 100%)',
+  'from-sky to-sky-light': 'linear-gradient(135deg, #7FC4D9 0%, #B3DDE9 100%)',
+  'from-sage-dark to-sage': 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 100%)',
+  'from-cream-dark to-sage-light': 'linear-gradient(135deg, #EDE9E4 0%, #C8E6D5 100%)',
+  'from-sky-light to-sage-light': 'linear-gradient(135deg, #B3DDE9 0%, #C8E6D5 100%)',
+  'from-sage to-sky': 'linear-gradient(135deg, #A8D5BA 0%, #7FC4D9 100%)',
+  'from-sage-dark to-sky': 'linear-gradient(135deg, #5A8F7B 0%, #7FC4D9 100%)',
+  'from-sage-light to-cream': 'linear-gradient(135deg, #C8E6D5 0%, #F5F3F0 100%)',
+  'from-sage-dark to-sage-light': 'linear-gradient(135deg, #5A8F7B 0%, #C8E6D5 100%)',
+  'from-sky to-sage': 'linear-gradient(135deg, #7FC4D9 0%, #A8D5BA 100%)',
+  'from-sky-light to-cream-dark': 'linear-gradient(135deg, #B3DDE9 0%, #EDE9E4 100%)',
+}
+
+const cardHeights = [280, 340, 260, 320, 300, 280, 340, 260, 300, 320, 280, 340]
+
+const categoryIcons = {
+  toddler: '🌱',
+  casa: '📚',
+  events: '🎉',
 }
 
 export default function GaleriePage() {
   const [activeCategory, setActiveCategory] = useState('all')
-  const [lightboxImage, setLightboxImage] = useState(null)
 
   const filtered =
     activeCategory === 'all'
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === activeCategory)
+      ? galleryCards
+      : galleryCards.filter((card) => card.category === activeCategory)
 
   return (
     <motion.div
@@ -63,36 +50,39 @@ export default function GaleriePage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-cream relative overflow-hidden">
+      <section
+        className="pt-32 pb-16 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 50%, #F5F3F0 100%)' }}
+      >
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #ffffff25 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <FadeInUp>
-            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-white bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-4">
               Galerie
             </span>
             <h1
-              className="font-poppins font-bold text-gray-800 leading-tight mb-5"
+              className="font-poppins font-bold text-white leading-tight mb-5"
               style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}
             >
               Viața la{' '}
-              <span className="gradient-text">Grădinița Montessori</span>
+              <span className="text-cream">{siteNameShort}</span>
             </h1>
-            <p className="text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto">
-              O privire în spatele ușilor noastre — momente autentice din viața
-              cotidiană a copiilor noștri.
+            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Momente din viața cotidiană a copiilor noștri — activitate, bucurie,
+              descoperire și comunitate autentică.
             </p>
           </FadeInUp>
         </div>
       </section>
 
       {/* Filter tabs */}
-      <section className="py-8 bg-white sticky top-[72px] z-30 border-b border-gray-100 shadow-sm">
+      <section className="py-6 bg-white sticky top-[72px] z-30 border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((cat) => (
@@ -115,52 +105,67 @@ export default function GaleriePage() {
       {/* Gallery Grid */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            layout
-            className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
-          >
-            <AnimatePresence>
-              {filtered.map((image) => (
-                <motion.div
-                  key={image.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="break-inside-avoid"
-                >
-                  <div
-                    className="relative rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer group"
-                    onClick={() => setLightboxImage(image)}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
+            >
+              {filtered.map((card, idx) => {
+                const bg = gradientMap[card.gradient] || 'linear-gradient(135deg, #A8D5BA 0%, #5A8F7B 100%)'
+                const h = cardHeights[card.id - 1] || 280
+                return (
+                  <motion.div
+                    key={card.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    className="break-inside-avoid mb-4"
                   >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-sage-dark/0 group-hover:bg-sage-dark/30 transition-all duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white rounded-full p-3 shadow-lg">
-                        <ZoomIn className="w-5 h-5 text-sage-dark" />
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -4 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative rounded-2xl overflow-hidden shadow-sm border border-white/60 cursor-pointer group"
+                      style={{ height: h, background: bg }}
+                    >
+                      {/* Content overlay */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <div className="w-12 h-12 rounded-xl bg-white/30 backdrop-blur flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <Camera className="w-6 h-6 text-white" />
+                        </div>
+                        <p className="font-poppins font-semibold text-white text-base leading-tight">
+                          {card.label}
+                        </p>
+                        <p className="text-white/70 text-xs mt-1">{card.sub}</p>
                       </div>
-                    </div>
-                    {/* Category tag */}
-                    <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <span className="text-xs bg-white/90 text-sage-dark font-semibold px-2 py-1 rounded-full">
-                        {categories.find((c) => c.id === image.category)?.label}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+
+                      {/* Bottom gradient overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
+
+                      {/* Category tag */}
+                      <div className="absolute top-3 left-3">
+                        <span className="text-xs bg-white/30 backdrop-blur text-white font-semibold px-2.5 py-1 rounded-full">
+                          {categoryIcons[card.category]}{' '}
+                          {categories.find((c) => c.id === card.category)?.label}
+                        </span>
+                      </div>
+
+                      {/* Shimmer on hover */}
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300" />
+                    </motion.div>
+                  </motion.div>
+                )
+              })}
+            </motion.div>
+          </AnimatePresence>
 
           {filtered.length === 0 && (
             <div className="text-center py-20 text-warm-gray">
-              <p className="text-lg">Nu există fotografii în această categorie.</p>
+              <p className="text-lg">Nu există conținut în această categorie.</p>
             </div>
           )}
         </div>
@@ -174,8 +179,7 @@ export default function GaleriePage() {
               Vino să vezi cu ochii tăi
             </h2>
             <p className="text-warm-gray leading-relaxed mb-6">
-              Fotografiile nu pot captura toată magia. Programează o vizită și
-              trăiește experiența Montessori în mod direct.
+              Programează o vizită și trăiește experiența {siteNameShort} în mod direct.
             </p>
             <a
               href="/contact"
@@ -186,13 +190,6 @@ export default function GaleriePage() {
           </FadeInUp>
         </div>
       </section>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxImage && (
-          <Lightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
-        )}
-      </AnimatePresence>
     </motion.div>
   )
 }

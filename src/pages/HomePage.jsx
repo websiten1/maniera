@@ -2,15 +2,14 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   Hand, Lightbulb, Heart, Sprout, Star, ArrowRight, Quote,
-  ChevronLeft, ChevronRight, Leaf, Users, Clock, Award
+  ChevronLeft, ChevronRight, Leaf, Users, Clock, Award, Phone,
 } from 'lucide-react'
 import { useState } from 'react'
 import Button from '../components/ui/Button'
 import SectionHeader from '../components/ui/SectionHeader'
 import { AnimatedContainer, AnimatedItem, FadeInUp } from '../components/ui/AnimatedSection'
-import { principles, testimonials, groups, stats } from '../data/content'
+import { principles, testimonials, stats, siteName, siteNameShort, sitePhone, sitePhoneRaw } from '../data/content'
 
-// Icons map for principles
 const iconMap = {
   Child: Hand,
   Home: Leaf,
@@ -24,17 +23,17 @@ const iconMap = {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-cream">
-      {/* Geometric background shapes */}
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 50%, #F5F3F0 100%)' }}>
+      {/* Geometric overlay shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-sage/20" />
-        <div className="absolute top-1/4 -left-20 w-64 h-64 rounded-full bg-sky/15" />
-        <div className="absolute bottom-10 right-1/4 w-48 h-48 rounded-full bg-sage-light/40" />
-        <div className="absolute bottom-0 -left-10 w-80 h-80 rounded-full bg-cream-dark" />
+        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-white/10" />
+        <div className="absolute top-1/4 -left-20 w-64 h-64 rounded-full bg-white/8" />
+        <div className="absolute bottom-10 right-1/4 w-48 h-48 rounded-full bg-sage-dark/20" />
+        <div className="absolute bottom-0 -left-10 w-80 h-80 rounded-full bg-white/5" />
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: 'radial-gradient(circle, #A8D5BA22 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #ffffff30 1px, transparent 1px)',
             backgroundSize: '28px 28px',
           }}
         />
@@ -48,11 +47,11 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-sage/30 rounded-full px-4 py-2 mb-6"
+              className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
-              <span className="text-sm font-medium text-sage-dark">
-                Înregistrări deschise pentru 2025–2026
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+              <span className="text-sm font-medium text-white">
+                Înregistrări deschise pentru 2026–2027
               </span>
             </motion.div>
 
@@ -60,22 +59,31 @@ function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="font-poppins font-bold text-gray-800 leading-tight mb-6"
-              style={{ fontSize: 'clamp(2.2rem, 5vw, 3.75rem)' }}
+              className="font-poppins font-bold text-white leading-tight mb-4"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
             >
               Educație pentru{' '}
-              <span className="gradient-text">Viață</span>
+              <span className="text-cream">Viață</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-lg text-warm-dark leading-relaxed mb-8 max-w-xl"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-base font-semibold text-white/90 mb-2"
             >
-              O grădiniță Montessori autentică în inima Iașului. Respectăm ritmul
-              unic al fiecărui copil și îl ghidăm spre independență, curiozitate
-              și bucurie în descoperire.
+              {siteName}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg text-white/80 leading-relaxed mb-8 max-w-xl"
+            >
+              O grădiniță și școală primară Montessori autentică în inima Iașului.
+              Respectăm ritmul unic al fiecărui copil și îl ghidăm spre independență,
+              curiozitate și bucurie în descoperire.
             </motion.p>
 
             <motion.div
@@ -84,13 +92,17 @@ function HeroSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap gap-4"
             >
-              <Button to="/contact" size="lg" variant="primary">
+              <Button to="/contact" size="lg" variant="white">
                 Programează o vizită
                 <ArrowRight className="w-5 h-5" />
               </Button>
-              <Button to="/principii" size="lg" variant="secondary">
-                Descoperă Montessori
-              </Button>
+              <a
+                href={`tel:${sitePhoneRaw}`}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 border border-white/40 text-white rounded-lg text-base font-semibold hover:bg-white/25 transition-all duration-200 backdrop-blur-sm"
+              >
+                <Phone className="w-5 h-5" />
+                {sitePhone}
+              </a>
             </motion.div>
 
             {/* Stats */}
@@ -98,83 +110,89 @@ function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-10 border-t border-sage/20"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-10 border-t border-white/20"
             >
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="font-poppins font-bold text-2xl text-sage-dark mb-1">
+                  <div className="font-poppins font-bold text-2xl text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-warm-gray">{stat.label}</div>
+                  <div className="text-xs text-white/70">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
           </div>
 
-          {/* Hero visual */}
+          {/* Hero visual card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            <div className="relative">
-              {/* Main card */}
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <img
-                  src="https://picsum.photos/seed/montessori-hero/640/480"
-                  alt="Copii în activitate Montessori"
-                  className="w-full object-cover"
-                  style={{ height: '380px' }}
-                  loading="eager"
-                />
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-sage-light flex items-center justify-center">
-                      <Leaf className="w-5 h-5 text-sage-dark" />
-                    </div>
-                    <div>
-                      <div className="font-poppins font-semibold text-gray-800">Mediu pregătit</div>
-                      <div className="text-sm text-warm-gray">Spațiu creat pentru copil</div>
-                    </div>
+            <div className="bg-white/15 backdrop-blur-md rounded-3xl border border-white/30 overflow-hidden shadow-2xl">
+              {/* Gradient visual block replacing image */}
+              <div
+                className="w-full flex items-center justify-center"
+                style={{
+                  height: '320px',
+                  background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 60%, #7FC4D9 100%)',
+                }}
+              >
+                <div className="text-center">
+                  <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center mx-auto mb-4">
+                    <Leaf className="w-10 h-10 text-white" />
                   </div>
-                  <p className="text-sm text-warm-gray leading-relaxed">
-                    Fiecare element este la înălțimea și la dispoziția copilului,
-                    invitând la explorare liberă și autonomă.
-                  </p>
+                  <p className="font-poppins font-bold text-white text-xl">{siteNameShort}</p>
+                  <p className="text-white/70 text-sm mt-1">Iași, România</p>
                 </div>
               </div>
-
-              {/* Floating card 1 */}
-              <motion.div
-                animate={{ y: [-4, 4, -4] }}
-                transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-                className="absolute -top-6 -left-6 bg-white rounded-2xl shadow-lg p-4 flex items-center gap-3"
-              >
-                <div className="w-10 h-10 rounded-xl bg-sky-light flex items-center justify-center">
-                  <Users className="w-5 h-5 text-sky" style={{ color: '#5A8F7B' }} />
+              <div className="p-6 bg-white/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                    <Leaf className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-poppins font-semibold text-white">Mediu pregătit</div>
+                    <div className="text-sm text-white/70">Spațiu creat pentru copil</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-semibold text-sm text-gray-800">Educatoare certificate</div>
-                  <div className="text-xs text-warm-gray">AMI / AMS</div>
-                </div>
-              </motion.div>
-
-              {/* Floating card 2 */}
-              <motion.div
-                animate={{ y: [4, -4, 4] }}
-                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-                className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-lg p-4"
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <div className="font-semibold text-sm text-gray-800">98% părinți mulțumiți</div>
-                <div className="text-xs text-warm-gray">din 50+ familii</div>
-              </motion.div>
+                <p className="text-sm text-white/70 leading-relaxed">
+                  Fiecare element este la înălțimea și la dispoziția copilului,
+                  invitând la explorare liberă și autonomă.
+                </p>
+              </div>
             </div>
+
+            {/* Floating card 1 */}
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
+              className="absolute -top-6 -left-6 bg-white rounded-2xl shadow-lg p-4 flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-sage-light flex items-center justify-center">
+                <Users className="w-5 h-5 text-sage-dark" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm text-gray-800">Educatoare certificate</div>
+                <div className="text-xs text-warm-gray">AMI / AMS</div>
+              </div>
+            </motion.div>
+
+            {/* Floating card 2 */}
+            <motion.div
+              animate={{ y: [4, -4, 4] }}
+              transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+              className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-lg p-4"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <div className="font-semibold text-sm text-gray-800">98% părinți mulțumiți</div>
+              <div className="text-xs text-warm-gray">din 50+ familii</div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -186,11 +204,11 @@ function HeroSection() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-warm-gray tracking-widest uppercase">Descoperă</span>
+        <span className="text-xs text-white/60 tracking-widest uppercase">Descoperă</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="w-0.5 h-8 bg-gradient-to-b from-sage to-transparent rounded-full"
+          className="w-0.5 h-8 bg-gradient-to-b from-white/60 to-transparent rounded-full"
         />
       </motion.div>
     </section>
@@ -248,9 +266,7 @@ function WhyMontessoriSection() {
                   transition={{ duration: 0.25 }}
                   className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm cursor-default"
                 >
-                  <div
-                    className={`w-12 h-12 rounded-xl ${card.color} flex items-center justify-center mb-5`}
-                  >
+                  <div className={`w-12 h-12 rounded-xl ${card.color} flex items-center justify-center mb-5`}>
                     <Icon className={`w-6 h-6 ${card.iconColor}`} />
                   </div>
                   <h3 className="font-poppins font-semibold text-gray-800 mb-3 text-lg">
@@ -285,13 +301,17 @@ function GroupsSection() {
               transition={{ duration: 0.25 }}
               className="bg-white rounded-3xl overflow-hidden shadow-sm border border-sage/10 group"
             >
-              <div className="relative overflow-hidden" style={{ height: '240px' }}>
-                <img
-                  src="https://picsum.photos/seed/toddlergroup/800/480"
-                  alt="Grupa Toddler"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              {/* Gradient block */}
+              <div
+                className="relative flex items-center justify-center"
+                style={{ height: '220px', background: 'linear-gradient(135deg, #A8D5BA 0%, #F5F3F0 100%)' }}
+              >
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-white/50 flex items-center justify-center mx-auto mb-3">
+                    <Sprout className="w-8 h-8 text-sage-dark" />
+                  </div>
+                  <p className="font-poppins font-semibold text-sage-dark">Grupo Toddler</p>
+                </div>
                 <div className="absolute top-4 left-4">
                   <span className="bg-sage text-white text-xs font-semibold px-3 py-1.5 rounded-full">
                     1 an 3 luni – 2 ani 6 luni
@@ -325,13 +345,17 @@ function GroupsSection() {
               transition={{ duration: 0.25 }}
               className="bg-white rounded-3xl overflow-hidden shadow-sm border border-sky/10 group"
             >
-              <div className="relative overflow-hidden" style={{ height: '240px' }}>
-                <img
-                  src="https://picsum.photos/seed/casabambini/800/480"
-                  alt="Casa dei Bambini"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              {/* Gradient block */}
+              <div
+                className="relative flex items-center justify-center"
+                style={{ height: '220px', background: 'linear-gradient(135deg, #7FC4D9 0%, #A8D5BA 100%)' }}
+              >
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-white/50 flex items-center justify-center mx-auto mb-3">
+                    <Star className="w-8 h-8 text-sage-dark" />
+                  </div>
+                  <p className="font-poppins font-semibold text-sage-dark">Casa dei Bambini</p>
+                </div>
                 <div className="absolute top-4 left-4">
                   <span className="bg-sky text-white text-xs font-semibold px-3 py-1.5 rounded-full">
                     2 ani 6 luni – 6 ani
@@ -342,7 +366,7 @@ function GroupsSection() {
                 <h3 className="font-poppins font-bold text-2xl text-gray-800 mb-2">
                   Casa dei Bambini
                 </h3>
-                <p className="text-sky font-medium text-sm mb-4">
+                <p className="text-sky font-medium text-sm mb-4" style={{ color: '#5A8F7B' }}>
                   Casa copiilor — un univers al descoperirii
                 </p>
                 <p className="text-warm-gray leading-relaxed mb-6">
@@ -441,7 +465,6 @@ function TestimonialsSection() {
             key={current}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.4 }}
             className="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-sage/10 relative"
           >
@@ -450,9 +473,7 @@ function TestimonialsSection() {
               "{t.text}"
             </p>
             <div className="flex items-center justify-center gap-4">
-              <div
-                className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center font-poppins font-bold text-sage-dark text-sm`}
-              >
+              <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center font-poppins font-bold text-sage-dark text-sm`}>
                 {t.avatar}
               </div>
               <div className="text-left">
@@ -462,7 +483,6 @@ function TestimonialsSection() {
             </div>
           </motion.div>
 
-          {/* Navigation */}
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prev}
@@ -520,7 +540,7 @@ function CTASection() {
             Gata să descoperiți Montessori împreună?
           </h2>
           <p className="text-white/75 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            Programează o vizită gratuită la grădinița noastră. Vom fi bucuroși să îți
+            Programează o vizită gratuită la {siteNameShort}. Vom fi bucuroși să îți
             răspundem la toate întrebările și să îți arătăm ce înseamnă educația
             Montessori autentică.
           </p>
@@ -529,9 +549,13 @@ function CTASection() {
               Programează o vizită
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button to="/principii" size="lg" className="bg-transparent border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60">
-              Află mai multe
-            </Button>
+            <a
+              href={`tel:${sitePhoneRaw}`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white/15 border border-white/40 text-white rounded-lg text-lg font-semibold hover:bg-white/25 transition-all duration-200"
+            >
+              <Phone className="w-5 h-5" />
+              {sitePhone}
+            </a>
           </div>
         </FadeInUp>
       </div>

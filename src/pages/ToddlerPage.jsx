@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import {
   Sunrise, Coffee, Play, TreePine, UtensilsCrossed, Moon,
-  Apple, Palette, Smile, Sunset, ArrowRight, CheckCircle2,
+  Apple, Palette, Smile, Sunset, ArrowRight, CheckCircle2, Sprout,
 } from 'lucide-react'
 import SectionHeader from '../components/ui/SectionHeader'
 import Button from '../components/ui/Button'
@@ -40,6 +40,22 @@ const benefits = [
   },
 ]
 
+function GradientVisual({ gradient, icon: Icon, label, height = 360 }) {
+  return (
+    <div
+      className="rounded-3xl flex items-center justify-center shadow-lg"
+      style={{ height, background: gradient }}
+    >
+      <div className="text-center">
+        <div className="w-16 h-16 rounded-2xl bg-white/30 backdrop-blur flex items-center justify-center mx-auto mb-3">
+          <Icon className="w-8 h-8 text-white" />
+        </div>
+        <p className="font-poppins font-semibold text-white text-lg">{label}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function ToddlerPage() {
   return (
     <motion.div
@@ -49,19 +65,22 @@ export default function ToddlerPage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-cream relative overflow-hidden">
+      <section
+        className="pt-32 pb-20 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #A8D5BA 0%, #F5F3F0 70%, #EDE9E4 100%)' }}
+      >
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #5A8F7B20 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-sage/10" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-sage/15" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeInUp>
-              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
+              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-white/60 backdrop-blur px-3 py-1 rounded-full mb-4">
                 1 an 3 luni – 2 ani 6 luni
               </span>
               <h1
@@ -69,9 +88,9 @@ export default function ToddlerPage() {
                 style={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)' }}
               >
                 Grupa{' '}
-                <span className="gradient-text">Toddler</span>
+                <span className="text-sage-dark">Toddler</span>
               </h1>
-              <p className="text-lg text-warm-gray leading-relaxed mb-6">
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 Primii pași spre independență. Programa Toddler este concepută special
                 pentru cel mai sensibil stadiu al vieții copilului, când mintea absoarbe
                 totul din jur cu o ușurință extraordinară.
@@ -95,15 +114,12 @@ export default function ToddlerPage() {
 
             <FadeInUp delay={0.2}>
               <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <img
-                    src="https://picsum.photos/seed/toddler-hero/640/520"
-                    alt="Copii la grupa Toddler"
-                    className="w-full object-cover"
-                    style={{ height: '420px' }}
-                  />
-                </div>
-                {/* Info badge */}
+                <GradientVisual
+                  gradient="linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 60%, #EDE9E4 100%)"
+                  icon={Sprout}
+                  label="Primii pași spre independență"
+                  height={420}
+                />
                 <motion.div
                   animate={{ y: [-3, 3, -3] }}
                   transition={{ repeat: Infinity, duration: 3.5 }}
@@ -137,14 +153,12 @@ export default function ToddlerPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-14">
             <FadeInUp>
-              <div className="rounded-3xl overflow-hidden shadow-lg">
-                <img
-                  src="https://picsum.photos/seed/toddler-activity/640/480"
-                  alt="Activitate Toddler"
-                  className="w-full object-cover"
-                  style={{ height: '360px' }}
-                />
-              </div>
+              <GradientVisual
+                gradient="linear-gradient(135deg, #C8E6D5 0%, #A8D5BA 50%, #5A8F7B 100%)"
+                icon={Play}
+                label="Activitate liberă Montessori"
+                height={360}
+              />
             </FadeInUp>
 
             <FadeInUp delay={0.15}>
@@ -178,7 +192,6 @@ export default function ToddlerPage() {
           />
 
           <div className="mt-12 relative">
-            {/* Vertical line */}
             <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sage via-sky to-sage-light" />
 
             <div className="space-y-2">
@@ -187,18 +200,10 @@ export default function ToddlerPage() {
                 return (
                   <FadeInUp key={idx} delay={idx * 0.05}>
                     <div className="flex gap-4 pl-14 relative">
-                      {/* Icon bubble */}
-                      <div
-                        className="absolute left-0 w-12 h-12 rounded-full bg-white border-2 border-sage/20 flex items-center justify-center shadow-sm"
-                      >
+                      <div className="absolute left-0 w-12 h-12 rounded-full bg-white border-2 border-sage/20 flex items-center justify-center shadow-sm">
                         <Icon className="w-5 h-5 text-sage-dark" />
                       </div>
-
-                      <div
-                        className={`flex-1 rounded-2xl p-4 mb-2 ${
-                          idx % 2 === 0 ? 'bg-white' : 'bg-cream-dark/60'
-                        }`}
-                      >
+                      <div className={`flex-1 rounded-2xl p-4 mb-2 ${idx % 2 === 0 ? 'bg-white' : 'bg-cream-dark/60'}`}>
                         <div className="flex items-center gap-3 mb-1">
                           <span className="text-xs font-bold text-sage-dark bg-sage-light/60 px-2 py-0.5 rounded-full">
                             {item.time}
@@ -232,8 +237,7 @@ export default function ToddlerPage() {
               <AnimatedItem key={b.title}>
                 <motion.div
                   whileHover={{ y: -4 }}
-                  className="rounded-2xl p-6 cursor-default"
-                  style={{ backgroundColor: '#ffffff', border: '1px solid #EDE9E4' }}
+                  className="rounded-2xl p-6 cursor-default border border-gray-100"
                 >
                   <div className={`w-12 h-12 rounded-xl ${b.color} flex items-center justify-center mb-5`}>
                     <CheckCircle2 className={`w-6 h-6 ${b.accent}`} />

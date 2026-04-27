@@ -5,6 +5,10 @@ import { FacebookIcon, InstagramIcon } from '../components/ui/SocialIcons'
 import SectionHeader from '../components/ui/SectionHeader'
 import Button from '../components/ui/Button'
 import { FadeInUp } from '../components/ui/AnimatedSection'
+import {
+  siteName, sitePhone, sitePhoneRaw, siteFacebook,
+  siteAddress, siteEmail, siteSchedule,
+} from '../data/content'
 
 const groupOptions = [
   { value: '', label: 'Selectează grupa de interes' },
@@ -15,13 +19,7 @@ const groupOptions = [
 ]
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    group: '',
-  })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', group: '' })
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -30,8 +28,7 @@ export default function ContactPage() {
     const errs = {}
     if (!form.name.trim()) errs.name = 'Numele este obligatoriu.'
     if (!form.email.trim()) errs.email = 'Email-ul este obligatoriu.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      errs.email = 'Adresa de email nu este validă.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Adresa de email nu este validă.'
     if (!form.message.trim()) errs.message = 'Mesajul este obligatoriu.'
     return errs
   }
@@ -45,12 +42,8 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate()
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs)
-      return
-    }
+    if (Object.keys(errs).length > 0) { setErrors(errs); return }
     setSubmitting(true)
-    // Simulate async submission — integrate FormSpree or EmailJS here
     await new Promise((r) => setTimeout(r, 1200))
     setSubmitting(false)
     setSubmitted(true)
@@ -64,30 +57,63 @@ export default function ContactPage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-cream relative overflow-hidden">
+      <section
+        className="pt-32 pb-16 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 60%, #F5F3F0 100%)' }}
+      >
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #ffffff25 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <FadeInUp>
-            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-white bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-4">
               Hai să vorbim
             </span>
             <h1
-              className="font-poppins font-bold text-gray-800 leading-tight mb-5"
+              className="font-poppins font-bold text-white leading-tight mb-5"
               style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}
             >
               Contactează-ne
             </h1>
-            <p className="text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed">
-              Avem un loc special pentru copilul tău. Scrie-ne, sună-ne sau vino
-              să ne cunoașteți. Suntem bucuroși să răspundem la orice întrebare.
+            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed mb-6">
+              Suntem bucuroși să răspundem la orice întrebare despre programele noastre.
+              Scrie-ne sau sună-ne direct.
             </p>
+            {/* Prominent phone in hero */}
+            <a
+              href={`tel:${sitePhoneRaw}`}
+              className="inline-flex items-center gap-3 bg-white/20 backdrop-blur border border-white/40 text-white rounded-2xl px-6 py-3 hover:bg-white/30 transition-all duration-200 font-semibold text-lg"
+            >
+              <Phone className="w-5 h-5" />
+              {sitePhone}
+            </a>
           </FadeInUp>
+        </div>
+      </section>
+
+      {/* Quick contact strip */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+            <a href={`tel:${sitePhoneRaw}`} className="flex items-center gap-2 text-sage-dark font-medium hover:text-sage transition-colors">
+              <Phone className="w-4 h-4" />
+              {sitePhone}
+            </a>
+            <span className="text-gray-200 hidden sm:block">|</span>
+            <a href={`mailto:${siteEmail}`} className="flex items-center gap-2 text-gray-600 hover:text-sage-dark transition-colors">
+              <Mail className="w-4 h-4" />
+              {siteEmail}
+            </a>
+            <span className="text-gray-200 hidden sm:block">|</span>
+            <span className="flex items-center gap-2 text-gray-600">
+              <Clock className="w-4 h-4" />
+              {siteSchedule}
+            </span>
+          </div>
         </div>
       </section>
 
@@ -111,8 +137,8 @@ export default function ContactPage() {
                       Mesaj trimis cu succes!
                     </h2>
                     <p className="text-warm-gray leading-relaxed mb-6">
-                      Mulțumim că ne-ai contactat. Vom reveni cu un răspuns în cel mult
-                      24 de ore. Abia așteptăm să te cunoaștem!
+                      Mulțumim că ai contactat {siteName}. Vom reveni cu un răspuns
+                      în cel mult 24 de ore.
                     </p>
                     <Button variant="primary" onClick={() => setSubmitted(false)}>
                       Trimite un alt mesaj
@@ -124,128 +150,81 @@ export default function ContactPage() {
                       Trimite-ne un mesaj
                     </h2>
 
-                    {/* Name */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="name">
                         Nume complet *
                       </label>
                       <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
+                        type="text" id="name" name="name" value={form.name} onChange={handleChange}
                         placeholder="Maria Popescu"
-                        className={`w-full rounded-xl border px-4 py-3 text-gray-800 placeholder-warm-gray/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40 ${
-                          errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-white hover:border-sage/40'
-                        }`}
+                        className={`w-full rounded-xl border px-4 py-3 text-gray-800 placeholder-warm-gray/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40 ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-white hover:border-sage/40'}`}
                       />
-                      {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                      )}
+                      {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                     </div>
 
-                    {/* Email + Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
                           Adresă email *
                         </label>
                         <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={form.email}
-                          onChange={handleChange}
+                          type="email" id="email" name="email" value={form.email} onChange={handleChange}
                           placeholder="maria@exemplu.ro"
-                          className={`w-full rounded-xl border px-4 py-3 text-gray-800 placeholder-warm-gray/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40 ${
-                            errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-white hover:border-sage/40'
-                          }`}
+                          className={`w-full rounded-xl border px-4 py-3 text-gray-800 placeholder-warm-gray/60 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40 ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-white hover:border-sage/40'}`}
                         />
-                        {errors.email && (
-                          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                        )}
+                        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="phone">
                           Număr de telefon
                         </label>
                         <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={form.phone}
-                          onChange={handleChange}
+                          type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange}
                           placeholder="07XX XXX XXX"
                           className="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-800 placeholder-warm-gray/60 bg-white hover:border-sage/40 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40"
                         />
                       </div>
                     </div>
 
-                    {/* Group */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="group">
                         Mă interesează
                       </label>
                       <select
-                        id="group"
-                        name="group"
-                        value={form.group}
-                        onChange={handleChange}
+                        id="group" name="group" value={form.group} onChange={handleChange}
                         className="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-800 bg-white hover:border-sage/40 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40"
                       >
                         {groupOptions.map((o) => (
-                          <option key={o.value} value={o.value} disabled={o.value === ''}>
-                            {o.label}
-                          </option>
+                          <option key={o.value} value={o.value} disabled={o.value === ''}>{o.label}</option>
                         ))}
                       </select>
                     </div>
 
-                    {/* Message */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="message">
                         Mesajul tău *
                       </label>
                       <textarea
-                        id="message"
-                        name="message"
-                        value={form.message}
-                        onChange={handleChange}
-                        rows={5}
-                        placeholder="Bună ziua! Aș dori să aflu mai multe despre..."
-                        className={`w-full rounded-xl border px-4 py-3 text-gray-800 placeholder-warm-gray/60 resize-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40 ${
-                          errors.message ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-white hover:border-sage/40'
-                        }`}
+                        id="message" name="message" value={form.message} onChange={handleChange}
+                        rows={5} placeholder="Bună ziua! Aș dori să aflu mai multe despre..."
+                        className={`w-full rounded-xl border px-4 py-3 text-gray-800 placeholder-warm-gray/60 resize-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sage/40 ${errors.message ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-white hover:border-sage/40'}`}
                       />
-                      {errors.message && (
-                        <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-                      )}
+                      {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                     </div>
 
                     <motion.button
-                      type="submit"
-                      disabled={submitting}
+                      type="submit" disabled={submitting}
                       whileHover={{ scale: submitting ? 1 : 1.02 }}
                       whileTap={{ scale: submitting ? 1 : 0.98 }}
                       className="w-full flex items-center justify-center gap-2 bg-sage text-white rounded-xl py-3.5 font-semibold text-base hover:bg-sage-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {submitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                          Se trimite...
-                        </>
+                        <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />Se trimite...</>
                       ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          Trimite mesajul
-                        </>
+                        <><Send className="w-4 h-4" />Trimite mesajul</>
                       )}
                     </motion.button>
-
-                    <p className="text-xs text-warm-gray text-center">
-                      Vei primi un răspuns în cel mult 24 de ore.
-                    </p>
+                    <p className="text-xs text-warm-gray text-center">Vei primi un răspuns în cel mult 24 de ore.</p>
                   </form>
                 )}
               </FadeInUp>
@@ -260,47 +239,41 @@ export default function ContactPage() {
                   </h2>
 
                   <div className="space-y-5">
+                    {/* Phone — most prominent */}
                     <a
-                      href="https://maps.google.com/?q=Strada+Aeroportului+1+Iași"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`tel:${sitePhoneRaw}`}
+                      className="flex items-center gap-4 group p-3 bg-sage-light/40 rounded-2xl hover:bg-sage-light/70 transition-colors"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-sage flex items-center justify-center flex-shrink-0">
+                        <Phone className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-sage-dark text-sm">Sună acum</div>
+                        <div className="font-poppins font-bold text-xl text-gray-800">{sitePhone}</div>
+                      </div>
+                    </a>
+
+                    <a
+                      href={`https://maps.google.com/?q=${encodeURIComponent(siteAddress)}`}
+                      target="_blank" rel="noopener noreferrer"
                       className="flex items-start gap-4 group"
                     >
                       <div className="w-10 h-10 rounded-xl bg-sage-light flex items-center justify-center flex-shrink-0 group-hover:bg-sage transition-colors">
                         <MapPin className="w-5 h-5 text-sage-dark group-hover:text-white transition-colors" />
                       </div>
                       <div>
-                        <div className="font-medium text-gray-800 group-hover:text-sage-dark transition-colors">
-                          Adresă
-                        </div>
-                        <div className="text-sm text-warm-gray">
-                          Strada Aeroportului 1<br />
-                          Iași 700384, România
-                        </div>
+                        <div className="font-medium text-gray-800 group-hover:text-sage-dark transition-colors text-sm">Adresă</div>
+                        <div className="text-sm text-warm-gray">{siteAddress}</div>
                       </div>
                     </a>
 
-                    <a href="tel:+40000000000" className="flex items-center gap-4 group">
-                      <div className="w-10 h-10 rounded-xl bg-sage-light flex items-center justify-center flex-shrink-0 group-hover:bg-sage transition-colors">
-                        <Phone className="w-5 h-5 text-sage-dark group-hover:text-white transition-colors" />
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-800 group-hover:text-sage-dark transition-colors">
-                          Telefon
-                        </div>
-                        <div className="text-sm text-warm-gray">+40 000 000 000</div>
-                      </div>
-                    </a>
-
-                    <a href="mailto:contact@montessori-iasi.ro" className="flex items-center gap-4 group">
+                    <a href={`mailto:${siteEmail}`} className="flex items-center gap-4 group">
                       <div className="w-10 h-10 rounded-xl bg-sage-light flex items-center justify-center flex-shrink-0 group-hover:bg-sage transition-colors">
                         <Mail className="w-5 h-5 text-sage-dark group-hover:text-white transition-colors" />
                       </div>
                       <div>
-                        <div className="font-medium text-gray-800 group-hover:text-sage-dark transition-colors">
-                          Email
-                        </div>
-                        <div className="text-sm text-warm-gray">contact@montessori-iasi.ro</div>
+                        <div className="font-medium text-gray-800 group-hover:text-sage-dark transition-colors text-sm">Email</div>
+                        <div className="text-sm text-warm-gray">{siteEmail}</div>
                       </div>
                     </a>
 
@@ -309,11 +282,8 @@ export default function ContactPage() {
                         <Clock className="w-5 h-5 text-sage-dark" />
                       </div>
                       <div>
-                        <div className="font-medium text-gray-800">Program</div>
-                        <div className="text-sm text-warm-gray">
-                          Luni – Vineri<br />
-                          08:00 – 18:00
-                        </div>
+                        <div className="font-medium text-gray-800 text-sm">Program</div>
+                        <div className="text-sm text-warm-gray">{siteSchedule}</div>
                       </div>
                     </div>
                   </div>
@@ -323,24 +293,27 @@ export default function ContactPage() {
                     <p className="text-sm font-medium text-gray-700 mb-3">Urmărește-ne</p>
                     <div className="flex gap-3">
                       <a
-                        href="https://facebook.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={siteFacebook} target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-sage/20 text-sm text-gray-600 hover:bg-sage hover:text-white hover:border-sage transition-all duration-200"
                       >
                         <FacebookIcon className="w-4 h-4" />
                         Facebook
                       </a>
                       <a
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="https://instagram.com" target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-sage/20 text-sm text-gray-600 hover:bg-sage hover:text-white hover:border-sage transition-all duration-200"
                       >
                         <InstagramIcon className="w-4 h-4" />
                         Instagram
                       </a>
                     </div>
+                  </div>
+
+                  {/* Name badge */}
+                  <div className="mt-6 pt-6 border-t border-sage/15">
+                    <p className="text-xs text-warm-gray leading-relaxed text-center">
+                      {siteName}
+                    </p>
                   </div>
                 </div>
               </FadeInUp>
@@ -350,31 +323,32 @@ export default function ContactPage() {
       </section>
 
       {/* Map placeholder */}
-      <section className="h-80 bg-cream-dark relative overflow-hidden">
+      <section
+        className="h-72 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #EDE9E4 0%, #C8E6D5 100%)' }}
+      >
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #5A8F7B20 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-16 h-16 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-sage rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
               <MapPin className="w-8 h-8 text-white" />
             </div>
-            <p className="font-poppins font-semibold text-gray-700">Strada Aeroportului 1, Iași</p>
+            <p className="font-poppins font-semibold text-gray-700">{siteAddress}</p>
             <a
-              href="https://maps.google.com/?q=Strada+Aeroportului+1+Iasi"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`https://maps.google.com/?q=${encodeURIComponent(siteAddress)}`}
+              target="_blank" rel="noopener noreferrer"
               className="text-sm text-sage-dark hover:underline mt-1 inline-block"
             >
               Deschide în Google Maps →
             </a>
           </div>
         </div>
-        {/* Subtle pattern */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #A8D5BA30 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
       </section>
     </motion.div>
   )

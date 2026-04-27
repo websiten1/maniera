@@ -3,7 +3,7 @@ import { Hand, Home, Clock, Lightbulb, Layers, Users, Sprout, Heart, Sun, Leaf, 
 import SectionHeader from '../components/ui/SectionHeader'
 import Button from '../components/ui/Button'
 import { FadeInUp, AnimatedContainer, AnimatedItem } from '../components/ui/AnimatedSection'
-import { principles, values } from '../data/content'
+import { principles, values, siteNameShort } from '../data/content'
 
 const iconMap = {
   Child: Hand,
@@ -193,7 +193,7 @@ export default function PrincipiiPage() {
             </h2>
             <p className="text-white/75 leading-relaxed mb-8">
               Cel mai bun mod de a înțelege pedagogia Montessori este să vii să o
-              trăiești. Programează o vizită și descoperă magia.
+              trăiești la {siteNameShort}. Programează o vizită și descoperă magia.
             </p>
             <Button to="/contact" variant="white" size="lg">
               Programează o vizită gratuită
