@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-sage: #A8D5BA;
+  --color-sage-dark: #5A8F7B;
+  --color-sage-light: #C8E6D5;
+  --color-cream: #F5F3F0;
+  --color-cream-dark: #EDE9E4;
+  --color-sky: #7FC4D9;
+  --color-sky-light: #B3DDE9;
+  --color-warm-gray: #9B9B9B;
+  --color-warm-dark: #5C5C5C;
+
+  --font-poppins: "Poppins", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: #2d3748;
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F3F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #A8D5BA;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5A8F7B;
+}
+
+/* Smooth focus rings */
+*:focus-visible {
+  outline: 2px solid #5A8F7B;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Pattern utility */
+.geometric-pattern {
+  background-image: radial-gradient(circle, #A8D5BA22 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dots-pattern {
+  background-image: radial-gradient(circle, #5A8F7B18 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #5A8F7B 0%, #7FC4D9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Timeline connector */
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #A8D5BA, #7FC4D9);
+}
