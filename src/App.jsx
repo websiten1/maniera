@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import DemoModal from './components/DemoModal'
 import HomePage from './pages/HomePage'
 import PrincipiiPage from './pages/PrincipiiPage'
 import ToddlerPage from './pages/ToddlerPage'
@@ -46,6 +47,7 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <DemoModal />
       <AppRoutes />
     </BrowserRouter>
   )
