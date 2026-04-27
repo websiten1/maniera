@@ -57,36 +57,34 @@ export default function ContactPage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section
-        className="pt-32 pb-16 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 60%, #F5F3F0 100%)' }}
-      >
+      <section className="pt-32 pb-16 bg-cream relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: 'radial-gradient(circle, #ffffff25 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
+        <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-sage/10 -translate-y-1/3 translate-x-1/3" />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <FadeInUp>
-            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-white bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
               Hai să vorbim
             </span>
             <h1
-              className="font-poppins font-bold text-white leading-tight mb-5"
+              className="font-poppins font-bold text-gray-800 leading-tight mb-5"
               style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}
             >
               Contactează-ne
             </h1>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed mb-6">
+            <p className="text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed mb-6">
               Suntem bucuroși să răspundem la orice întrebare despre programele noastre.
               Scrie-ne sau sună-ne direct.
             </p>
             {/* Prominent phone in hero */}
             <a
               href={`tel:${sitePhoneRaw}`}
-              className="inline-flex items-center gap-3 bg-white/20 backdrop-blur border border-white/40 text-white rounded-2xl px-6 py-3 hover:bg-white/30 transition-all duration-200 font-semibold text-lg"
+              className="inline-flex items-center gap-3 bg-sage text-white rounded-2xl px-6 py-3 hover:bg-sage-dark transition-all duration-200 font-semibold text-lg shadow-sm"
             >
               <Phone className="w-5 h-5" />
               {sitePhone}

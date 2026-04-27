@@ -50,30 +50,28 @@ export default function GaleriePage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section
-        className="pt-32 pb-16 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 50%, #F5F3F0 100%)' }}
-      >
+      <section className="pt-32 pb-16 bg-cream relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: 'radial-gradient(circle, #ffffff25 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
+        <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-sage/10 -translate-y-1/3 translate-x-1/3" />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <FadeInUp>
-            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-white bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
               Galerie
             </span>
             <h1
-              className="font-poppins font-bold text-white leading-tight mb-5"
+              className="font-poppins font-bold text-gray-800 leading-tight mb-5"
               style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}
             >
               Viața la{' '}
-              <span className="text-cream">{siteNameShort}</span>
+              <span className="gradient-text">{siteNameShort}</span>
             </h1>
-            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto">
               Momente din viața cotidiană a copiilor noștri — activitate, bucurie,
               descoperire și comunitate autentică.
             </p>

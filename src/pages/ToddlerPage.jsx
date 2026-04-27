@@ -65,22 +65,20 @@ export default function ToddlerPage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section
-        className="pt-32 pb-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #A8D5BA 0%, #F5F3F0 70%, #EDE9E4 100%)' }}
-      >
+      <section className="pt-32 pb-20 bg-cream relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: 'radial-gradient(circle, #5A8F7B20 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-sage/15" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-sage/10" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-sky/5" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeInUp>
-              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-white/60 backdrop-blur px-3 py-1 rounded-full mb-4">
+              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
                 1 an 3 luni – 2 ani 6 luni
               </span>
               <h1

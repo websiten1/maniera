@@ -40,42 +40,39 @@ export default function DesprePage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section
-        className="pt-32 pb-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #5A8F7B 0%, #A8D5BA 50%, #F5F3F0 100%)' }}
-      >
+      <section className="pt-32 pb-20 bg-cream relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: 'radial-gradient(circle, #ffffff25 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #A8D5BA20 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
-        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-white/10" />
-        <div className="absolute bottom-0 -left-10 w-64 h-64 rounded-full bg-white/5" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-sage/10" />
+        <div className="absolute bottom-0 -left-10 w-64 h-64 rounded-full bg-sky/5" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeInUp>
-              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-white bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-4">
+              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sage-light/60 px-3 py-1 rounded-full mb-4">
                 Povestea Noastră
               </span>
               <h1
-                className="font-poppins font-bold text-white leading-tight mb-6"
+                className="font-poppins font-bold text-gray-800 leading-tight mb-6"
                 style={{ fontSize: 'clamp(1.75rem, 4.5vw, 2.75rem)' }}
               >
                 {siteName}
               </h1>
-              <p className="text-lg text-white/85 leading-relaxed mb-5">
+              <p className="text-lg text-gray-700 leading-relaxed mb-5">
                 În 2019, am deschis ușile grădiniței din Iași cu o misiune simplă și
                 profundă: să oferim copiilor din acest oraș o educație autentică,
                 bazată pe respectul față de natura lor unică.
               </p>
-              <p className="text-white/75 leading-relaxed mb-5">
+              <p className="text-gray-600 leading-relaxed mb-5">
                 De la primele 8 copii din grupa Toddler, am crescut organic, construind
                 o comunitate în care copiii, educatoarele și familiile se cunosc cu adevărat.
               </p>
-              <p className="text-white/75 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 Astăzi, peste 50 de familii fac parte din povestea {siteNameShort}, și
                 fiecare an aduce noi descoperiri, noi bucurii și noi dovezi că metoda
                 Montessori funcționează cu adevărat.

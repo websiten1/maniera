@@ -44,22 +44,20 @@ export default function CasaDeiBambiniPage() {
       transition={{ duration: 0.3 }}
     >
       {/* Hero */}
-      <section
-        className="pt-32 pb-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #7FC4D9 0%, #A8D5BA 60%, #F5F3F0 100%)' }}
-      >
+      <section className="pt-32 pb-20 bg-cream relative overflow-hidden">
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-40"
           style={{
-            backgroundImage: 'radial-gradient(circle, #5A8F7B20 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, #7FC4D920 1px, transparent 1px)',
             backgroundSize: '24px 24px',
           }}
         />
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/10" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-sky/10" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-sage/5" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeInUp>
-              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-white/60 backdrop-blur px-3 py-1 rounded-full mb-4">
+              <span className="inline-block text-sm font-semibold uppercase tracking-widest text-sage-dark bg-sky-light/60 px-3 py-1 rounded-full mb-4">
                 2 ani 6 luni – 6 ani
               </span>
               <h1
