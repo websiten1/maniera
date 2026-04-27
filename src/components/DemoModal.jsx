@@ -2,15 +2,23 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
+function Bullet({ children }) {
+  return (
+    <li className="flex items-start gap-3">
+      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-sage-dark flex-shrink-0" />
+      <span className="text-sm text-gray-700 leading-snug">{children}</span>
+    </li>
+  )
+}
+
 const pages = [
   {
-    emoji: '✨',
     title: 'Bun venit!',
+    subtitle: 'Acesta este website-ul tău demo',
     content: (
       <div className="space-y-3 text-center">
-        <p className="text-warm-gray leading-relaxed">
-          Acesta este website-ul tău <strong className="text-sage-dark">DEMO</strong> creat
-          special pentru:
+        <p className="text-warm-gray leading-relaxed text-sm">
+          Acesta este un website complet și funcțional creat pentru:
         </p>
         <div className="bg-sage-light/30 rounded-2xl px-6 py-4 border border-sage/20">
           <p className="font-poppins font-semibold text-gray-800 leading-snug">
@@ -19,14 +27,14 @@ const pages = [
           </p>
         </div>
         <p className="text-warm-gray text-sm leading-relaxed">
-          Am creat un website complet și funcțional. Iată ce conține și cum poate fi personalizat!
+          Explorează toate paginile și secțiunile disponibile, apoi spune-ne ce schimbări dorești.
         </p>
       </div>
     ),
   },
   {
-    emoji: '📱',
     title: 'Ce conține acest site?',
+    subtitle: 'Website-ul include următoarele secțiuni',
     content: (
       <ul className="space-y-2.5 text-left">
         {[
@@ -37,89 +45,69 @@ const pages = [
           ['Galerie', 'momente din viața grădiniței'],
           ['Contact', 'formular, hartă, date de contact'],
           ['Despre Noi', 'echipă, misiune, certificări'],
+          ['Design responsive', 'funcționează pe telefon, tabletă și desktop'],
         ].map(([title, desc]) => (
-          <li key={title} className="flex items-start gap-3">
-            <span className="mt-0.5 w-5 h-5 rounded-full bg-sage flex items-center justify-center flex-shrink-0">
-              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </span>
-            <span className="text-sm text-gray-700 leading-snug">
-              <strong className="text-gray-800">{title}</strong> — {desc}
-            </span>
-          </li>
+          <Bullet key={title}>
+            <strong className="text-gray-800">{title}</strong> — {desc}
+          </Bullet>
         ))}
-        <li className="flex items-start gap-3">
-          <span className="mt-0.5 w-5 h-5 rounded-full bg-sage flex items-center justify-center flex-shrink-0">
-            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-          </span>
-          <span className="text-sm text-gray-700 leading-snug">
-            <strong className="text-gray-800">Design responsive</strong> — funcționează perfect pe telefon, tabletă și desktop
-          </span>
-        </li>
       </ul>
     ),
   },
   {
-    emoji: '🔧',
-    title: 'Versiune DEMO — Personalizabilă 100%!',
+    title: 'Versiune Demo — Complet Personalizabilă',
+    subtitle: 'Totul poate fi schimbat după preferințele tale',
     content: (
       <div className="space-y-3">
-        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-center">
-          <p className="text-amber-700 font-semibold text-sm">⚠️ Acesta este un site DEMO</p>
-          <p className="text-amber-600 text-xs mt-0.5">Totul poate fi schimbat după preferințele tale</p>
+        <div className="bg-sage-light/20 border border-sage/20 rounded-xl px-4 py-3">
+          <p className="text-sage-dark font-semibold text-sm text-center">
+            Acesta este un site demo — 100% personalizabil
+          </p>
         </div>
-        <p className="text-warm-gray text-sm font-medium">Ce poate fi modificat:</p>
+        <p className="text-warm-gray text-xs font-medium uppercase tracking-wider">Ce poate fi modificat:</p>
         <div className="grid grid-cols-2 gap-2">
           {[
-            '🎨 Culori și design',
-            '🖼️ Poze și imagini',
-            '✍️ Text și conținut',
-            '📄 Ordinea paginilor',
-            '🔤 Logo și branding',
-            '➕ Pagini noi',
-            '🔡 Fonturi',
-            '📐 Layout-uri',
+            'Culori și design',
+            'Imagini și fotografii',
+            'Text și conținut',
+            'Ordinea paginilor',
+            'Logo și branding',
+            'Pagini noi',
+            'Tipografie și fonturi',
+            'Layout-uri și forme',
           ].map((item) => (
-            <div key={item} className="bg-sage-light/20 rounded-lg px-3 py-2 text-xs text-gray-700 border border-sage/15">
+            <div key={item} className="bg-cream rounded-lg px-3 py-2 text-xs text-gray-700 border border-gray-100">
               {item}
             </div>
           ))}
         </div>
-        <p className="text-center text-sage-dark font-semibold text-sm pt-1">
-          Doar spune-ne cum vrei și noi adaptăm totul! 🎨
+        <p className="text-sage-dark font-semibold text-sm text-center pt-1">
+          Doar spune-ne cum vrei și noi vom adapta totul.
         </p>
       </div>
     ),
   },
   {
-    emoji: '🎉',
-    title: 'Gata pentru explorare!',
+    title: 'Gata pentru explorare',
+    subtitle: 'Website-ul este complet și funcțional',
     content: (
-      <div className="space-y-3 text-center">
-        <p className="text-warm-gray leading-relaxed">
-          Website-ul este <strong className="text-sage-dark">COMPLET</strong> și{' '}
-          <strong className="text-sage-dark">FUNCȚIONAL</strong>!
+      <div className="space-y-3">
+        <p className="text-warm-gray text-sm leading-relaxed">
+          Explorează site-ul și descoperă:
         </p>
-        <div className="grid grid-cols-1 gap-2 text-left">
+        <ul className="space-y-2">
           {[
             'Design modern și elegant',
             'Navigație intuitivă și fluidă',
-            'Responsive pe toate dispozitivele',
-            'Viteză optimizată',
+            'Responsiv pe toate dispozitivele',
+            'Performanță optimizată',
             'Ușor de actualizat',
           ].map((item) => (
-            <div key={item} className="flex items-center gap-2 text-sm text-gray-700">
-              <span className="text-sage-dark font-bold">✓</span>
-              {item}
-            </div>
+            <Bullet key={item}>{item}</Bullet>
           ))}
-        </div>
+        </ul>
         <p className="text-warm-gray text-sm leading-relaxed pt-1">
-          Explorează site-ul și spune-ne ce modificări dorești.<br />
-          Suntem aici pentru orice schimbare! 💚
+          După explorare, spune-ne ce schimbări dorești și suntem gata să personalizăm orice aspect.
         </p>
       </div>
     ),
@@ -214,11 +202,13 @@ export default function DemoModal() {
                   transition={{ duration: 0.25, ease: 'easeInOut' }}
                   className="pt-3 pb-2"
                 >
-                  <div className="text-4xl text-center mb-3">{pages[page].emoji}</div>
-                  <h2 className="font-poppins font-bold text-gray-800 text-center mb-4 leading-snug"
-                    style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)' }}>
+                  <h2 className="font-poppins font-bold text-gray-800 text-center mb-1 leading-snug"
+                    style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>
                     {pages[page].title}
                   </h2>
+                  {pages[page].subtitle && (
+                    <p className="text-warm-gray text-xs text-center mb-4">{pages[page].subtitle}</p>
+                  )}
                   {pages[page].content}
                 </motion.div>
               </AnimatePresence>
